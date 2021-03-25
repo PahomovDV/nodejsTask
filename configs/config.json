@@ -1,7 +1,6 @@
 {
     "appPort": "{{PORT}}",
     "wssPort": "{{WSS_PORT}}",
-    "sitePort":"{{SITE_PORT}}",
     "mainUrl": "{{MAIN_URL}}",
     "staticUrl": "{{STATIC_URL}}",
     "secret":  "{{SECRET}}",
