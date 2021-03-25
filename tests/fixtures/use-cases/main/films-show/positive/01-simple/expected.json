@@ -1,0 +1,37 @@
+{
+    "data": [
+        "required",
+        {
+            "nested_object": {
+                "id": [
+                    "required",
+                    "integer"
+                ],
+                "title": {
+                    "is": "dignissimos"
+                },
+                "year": {
+                    "is": 89157
+                },
+                "type": {
+                    "is": "qui"
+                },
+                "stars": {
+                    "is": "quia"
+                },
+                "createdAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                },
+                "updatedAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                }
+            }
+        }
+    ]
+}

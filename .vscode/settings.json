@@ -1,0 +1,30 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "nodejstask",
+            "database": "nodejstask",
+            "username": "root",
+            "password": "Password2021!"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "nodejstasktest",
+            "database": "nodejstasktest",
+            "username": "root",
+            "password": "Password2021!"
+        }
+    ]
+}

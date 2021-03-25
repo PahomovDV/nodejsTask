@@ -1,0 +1,37 @@
+{
+    "data": [
+        "required",
+        {
+            "nested_object": {
+                "id": [
+                    "required",
+                    "integer"
+                ],
+                "title": {
+                    "is": "voluptas"
+                },
+                "year": {
+                    "is": 16264
+                },
+                "type": {
+                    "is": "est"
+                },
+                "stars": {
+                    "is": "aut"
+                },
+                "createdAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                },
+                "updatedAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                }
+            }
+        }
+    ]
+}

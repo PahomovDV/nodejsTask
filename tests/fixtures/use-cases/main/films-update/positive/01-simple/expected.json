@@ -1,0 +1,37 @@
+{
+    "data": [
+        "required",
+        {
+            "nested_object": {
+                "id": [
+                    "required",
+                    "integer"
+                ],
+                "title": {
+                    "is": "minima"
+                },
+                "year": {
+                    "is": 34938
+                },
+                "type": {
+                    "is": "iusto"
+                },
+                "stars": {
+                    "is": "consequatur"
+                },
+                "createdAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                },
+                "updatedAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                }
+            }
+        }
+    ]
+}

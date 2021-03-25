@@ -1,0 +1,69 @@
+{
+    "data": [
+        "required",
+        {
+            "list_of_objects": {
+                "id": [
+                    "required",
+                    "integer"
+                ],
+                "title": [
+                    "required",
+                    "string",
+                    {
+                        "max_length": 255
+                    }
+                ],
+                "year": [
+                    "required",
+                    "integer"
+                ],
+                "type": [
+                    "required",
+                    "string",
+                    {
+                        "max_length": 255
+                    }
+                ],
+                "stars": [
+                    "required",
+                    "string",
+                    {
+                        "max_length": 255
+                    }
+                ],
+                "createdAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                },
+                "updatedAt": {
+                    "iso_date": {
+                        "min": "current",
+                        "format": "datetime"
+                    }
+                }
+            }
+        }
+    ],
+    "meta": [
+        "required",
+        {
+            "nested_object": {
+                "totalCount": {
+                    "is": 3
+                },
+                "filteredCount": {
+                    "is": 3
+                },
+                "limit": {
+                    "is": 20
+                },
+                "offset": {
+                    "is": 0
+                }
+            }
+        }
+    ]
+}

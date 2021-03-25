@@ -7,7 +7,17 @@ import admins from '../fixtures/data/admins.json';
 import User from '../../lib/domain-model/User.mjs';
 import users from '../fixtures/data/users.json';
 
+import Film from '../../lib/domain-model/Film.mjs';
+import films from '../fixtures/data/films.json';
+
 class TestFactory {
+    async setupFilms() {
+        const savedFilms = await Film.bulkCreate(films);
+
+
+        return savedFilms;
+    }
+
     async setupAdmins() {
         const savedAdmins = await Admin.bulkCreate(admins);
 
