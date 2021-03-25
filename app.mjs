@@ -1,6 +1,7 @@
 import * as API         from './lib/api/index.mjs';
 import * as RestAPI     from './lib/api/rest-api/app.mjs';
 import * as JsonRPC     from './lib/api/json-rpc/app.mjs';
+import * as SiteAPI     from './lib/api/site/app.mjs';
 import * as DomainModel from './lib/domain-model/index.mjs';
 import Logger           from './lib/infrastructure/Logger.mjs';
 import EmailSender      from './lib/infrastructure/notificator/Mail.mjs';
@@ -16,10 +17,10 @@ async function main() {
     });
 
     logger.info(`[App] Init Mode: ${process.env.MODE}`);
-
     // Init Controllers Layer (API)
     API.setLogger(logger);
 
+    SiteAPI.start({ sitePort: config.sitePort });
     RestAPI.start({ appPort: config.appPort });
     await JsonRPC.start({ wssPort: config.wssPort });
 
