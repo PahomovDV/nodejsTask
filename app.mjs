@@ -1,4 +1,5 @@
 import * as API         from './lib/api/index.mjs';
+import * as Site         from './lib/api/site/app.mjs';
 import * as RestAPI     from './lib/api/rest-api/app.mjs';
 import * as JsonRPC     from './lib/api/json-rpc/app.mjs';
 import * as DomainModel from './lib/domain-model/index.mjs';
@@ -20,6 +21,7 @@ async function main() {
     // Init Controllers Layer (API)
     API.setLogger(logger);
 
+    Site.start({ sitePort: config.sitePort });
     RestAPI.start({ appPort: config.appPort });
     await JsonRPC.start({ wssPort: config.wssPort });
 

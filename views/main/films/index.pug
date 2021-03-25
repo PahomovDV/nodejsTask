@@ -1,0 +1,83 @@
+extends ../layouts/main-layout
+
+append styles
+    link(rel="stylesheet", href="/public/bootstrap/dist/css/bootstrap.min.css")
+
+append scripts
+    script(src="/public/jquery/dist/jquery.min.js")
+    script(src="/public/bootstrap/dist/js/bootstrap.min.js")
+
+
+append content
+    main(class="py-4")
+        div(class="container")
+            input(id="uploadDocument" type="file" name="file" style="display: none")
+            div(id="output")
+            div(class="row")
+                div(class="col-md-12")
+                    table(id="stats-table" class="table table-bordered")
+                        thead
+                            tr
+                                th ID
+                                th Title
+                                th Year Release
+                                th Format
+                                th Actors
+                                th Action 
+
+        div(id="films-modal" class="modal" tabindex="-1" role="dialog")
+            div(class="modal-dialog" role="document")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        h5(class="modal-title") Add new film
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                    form(id="films-form")
+                        div(class="modal-body")
+                            p Please fill in all fields to add a new movie
+                            div(class="form-group mb-3")
+                                label(for="films-input-title") Title
+                                input(type="text" id="films-input-title" name="title" class="form-change form-control form-averaged" aria-label="Title" value="")
+                            div(class="form-group mb-3")
+                                label(for="films-input-year") Year Release
+                                input(type="text" id="films-input-year" name="year" class="form-change form-control form-averaged" aria-label="Release Year" value="")
+                            div(class="form-group mb-3")
+                                label(for="films-select-format") Format
+                                select(id="films-select-format" class="form-control form-averaged")
+                                    option VHS
+                                    option DVD
+                                    option Blu-Ray
+                            div(class="form-group mb-3")
+                                label(for="films-input-stars") Stars
+                                input(type="text" id="films-input-stars" name="stars" class="form-change form-control form-averaged" aria-label="Stars" value="")
+                                small(id="actorsHelp" class="form-text text-muted") Use commas to separate
+                        div(class="modal-footer")
+                            button(type="submit" class="btn btn-primary btn-save") Save
+                            button(type="button" class="btn btn-secondary" data-dismiss="modal") Close
+
+        div(id="error-modal" class="modal" tabindex="-1" role="dialog")
+            div(class="modal-dialog" role="document")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        h5(class="modal-title") This film already added!
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                    div(class="modal-footer")
+                        button(type="button" class="btn btn-secondary" data-dismiss="modal") Close
+
+        div(id="confirmation-modal" class="modal" tabindex="-1" role="dialog")
+            div(class="modal-dialog" role="document")
+                div(class="modal-content")
+                    div(class="modal-header")
+                        h5(class="modal-title") Are you sure?
+                        button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+                            span(aria-hidden="true") &times;
+                    div(class="modal-footer")
+                        button(type="button" id="deleteFilm" class="btn btn-secondary") Yes
+                        button(type="button" class="btn btn-secondary" data-dismiss="modal") No
+
+
+append footer
+    footer(class="panel-footer clearfix")
+        div(class="container")
+            div(class="pull-left") All rights reserved
