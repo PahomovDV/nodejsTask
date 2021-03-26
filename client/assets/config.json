@@ -1,0 +1,6 @@
+{
+    "apiBaseUrl" : "/api/v1",
+    "datatables" : {
+        "language" : "/assets/plugins/datatables/json/Ukrainian.json"
+    }
+}

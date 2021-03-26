@@ -1,7 +1,9 @@
 html
   head
     block scripts
+      script(src="/public/build/index.js") 
     block styles
+      link(rel="stylesheet", href="/public/build/main.min.css")
     title My Site - #{title}
   body
     div(class="wrapper")

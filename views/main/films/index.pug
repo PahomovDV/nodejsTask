@@ -1,13 +1,5 @@
 extends ../layouts/main-layout
 
-append styles
-    link(rel="stylesheet", href="/public/bootstrap/dist/css/bootstrap.min.css")
-
-append scripts
-    script(src="/public/jquery/dist/jquery.min.js")
-    script(src="/public/bootstrap/dist/js/bootstrap.min.js")
-
-
 append content
     main(class="py-4")
         div(class="container")
@@ -15,7 +7,7 @@ append content
             div(id="output")
             div(class="row")
                 div(class="col-md-12")
-                    table(id="stats-table" class="table table-bordered")
+                    table(id="default-table" class="table table-bordered")
                         thead
                             tr
                                 th ID
