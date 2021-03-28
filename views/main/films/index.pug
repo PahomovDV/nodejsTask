@@ -1,11 +1,10 @@
 extends ../layouts/main-layout
 
 append styles
-    link(rel="stylesheet", href="/public/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="/public/build/main.css")
 
 append scripts
-    script(src="/public/jquery/dist/jquery.min.js")
-    script(src="/public/bootstrap/dist/js/bootstrap.min.js")
+    script(src="/public/build/main.js")
 
 
 append content
@@ -15,7 +14,7 @@ append content
             div(id="output")
             div(class="row")
                 div(class="col-md-12")
-                    table(id="stats-table" class="table table-bordered")
+                    table(id="films-table" class="table table-bordered")
                         thead
                             tr
                                 th ID
