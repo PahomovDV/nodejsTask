@@ -35,8 +35,8 @@ export default class App {
             errorElement  : 'div',
             errorClass    : 'alert alert-danger',
             submitHandler : () => {
-                if (findFilm() === 'false') {
-                    createFilm();
+                if (this.findFilm() === 'false') {
+                    this.createFilm();
                     $('#films-modal').modal('hide');
                 } else {
                     $('#films-modal').modal('hide');
@@ -115,9 +115,9 @@ export default class App {
             data    : result.data || '',
             code    : result.code || ''
         };
-    
+
         let error = new Error();
-    
+
         error = { ...error, ...responseError };
         throw (error);
     }
