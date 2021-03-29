@@ -35,13 +35,15 @@ export default class App {
             errorElement  : 'div',
             errorClass    : 'alert alert-danger',
             submitHandler : () => {
-                if (this.findFilm() === 'false') {
-                    this.createFilm();
-                    $('#films-modal').modal('hide');
-                } else {
-                    $('#films-modal').modal('hide');
-                    $('#error-modal').modal('show');
-                }
+                // eslint-disable-next-line more/no-then
+                this.createFilm().then(response => {
+                    if (response.status === 1) {
+                        $('#films-modal').modal('hide');
+                    } else {
+                        $('#films-modal').modal('hide');
+                        $('#error-modal').modal('show');
+                    }
+                });
             }
         });
 
@@ -60,10 +62,6 @@ export default class App {
                 {
                     text      : 'Upload',
                     className : 'btn btn-primary btn-lg btn-upload'
-                },
-                {
-                    text      : 'Delete All',
-                    className : 'btn btn-primary btn-lg btn-delete-all'
                 }
             ],
             ajax : {
@@ -72,8 +70,8 @@ export default class App {
             columns : [
                 { data: 'id', name: 'id', searchable: false, orderable: true },
                 { data: 'title', name: 'title', searchable: true, orderable: true },
-                { data: 'release_year', name: 'release_year', searchable: false, orderable: true },
-                { data: 'format', name: 'format', searchable: false, orderable: true },
+                { data: 'year', name: 'year', searchable: false, orderable: true },
+                { data: 'type', name: 'type', searchable: false, orderable: true },
                 { data: 'stars', name: 'stars', searchable: true, orderable: false },
                 {
                     name       : 'delete_button',
@@ -103,10 +101,12 @@ export default class App {
             body           : JSON.stringify(data)
         });
 
-        const result = await response.json();
+        const result = await response;
 
         if (result.ok) {
-            return result;
+            table.ajax.reload();
+
+            return result.json();
         }
 
         const responseError = {
@@ -122,36 +122,18 @@ export default class App {
         throw (error);
     }
 
-    findFilm(title) {
-        const data = { title };
-
-        try {
-            const result = this.fetcher('/api/v1/films/find', 'POST', data);
-
-            table.ajax.reload();
-
-            return result;
-        } catch (e) {
-            console.log();
-        }
-    }
-
     createFilm() {
         const data = {
-            title       : $('#films-input-title').val(),
-            releaseYear : $('#films-input-year').val(),
-            format      : $('#films-select-format option:selected').val(),
-            stars       : $('#films-input-stars').val()
+            title : $('#films-input-title').val(),
+            year  : $('#films-input-year').val(),
+            type  : $('#films-select-format option:selected').val(),
+            stars : $('#films-input-stars').val()
         };
 
         try {
-            const result = this.fetcher('/api/v1/films/create', 'POST', data);
-
-            table.ajax.reload();
-
-            return result;
+            return this.fetcher('films', 'POST', { data });
         } catch (e) {
-            console.log();
+            console.log(e);
         }
     }
 
@@ -159,53 +141,40 @@ export default class App {
         const data = { id };
 
         try {
-            const result = this.fetcher('/api/v1/films/delete', 'DELETE', data);
-
-            table.ajax.reload();
-
-            return result;
+            return this.fetcher(`films/${id}`, 'DELETE', data);
         } catch (e) {
-            console.log();
-        }
-    }
-
-    deleteAllFilms() {
-        try {
-            const result = this.fetcher('/api/v1/films/deleteAll', 'DELETE');
-
-            table.ajax.reload();
-
-            return result;
-        } catch (e) {
-            console.log();
+            console.log(e);
         }
     }
 
     eventBinder() {
-        $(document).on('hidden.bs.modal', '#films-modal', () => {
+        $(document).on('hidden.bs.modal', '#films-modal', (e) => {
+            e.preventDefault();
             $(this).find('form').trigger('reset');
         });
 
-        $(document).on('click', '.btn-delete', () => {
+        $(document).on('click', 'button.btn-delete', (e) => {
+            e.preventDefault();
+
             $('#confirmation-modal').modal('show');
-            $('#deleteFilm').attr('data-id', this.id);
+            $('#deleteFilm').attr('data-id', e.target.id);
         });
 
-        $('#deleteFilm').on('click', () => {
-            const id = this.dataset.id;
+        $('#deleteFilm').on('click', (e) => {
+            e.preventDefault();
+            const id = e.target.dataset.id;
 
             this.deleteFilm(id);
+            $('#confirmation-modal').modal('hide');
         });
 
-        $('.btn-upload').on('click', () => {
+        $('.btn-upload').on('click', (e) => {
+            e.preventDefault();
             $('#uploadDocument').trigger('click');
         });
 
-        $('.btn-delete-all').on('click', () => {
-            this.deleteAllFilms();
-        });
-
-        $('.btn-add').on('click', () => {
+        $('.btn-add').on('click', (e) => {
+            e.preventDefault();
             $('#films-modal').modal('show');
         });
     }
