@@ -40,6 +40,7 @@
     "datatables.net-buttons-bs4": "^1.7.0",
     "docopt": "^0.6.2",
     "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.7.6",
     "json-pointer": "^0.6.0",

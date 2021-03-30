@@ -90,15 +90,10 @@ export default class App {
     async fetcher(url = '', method = 'POST', data = {}) {
         const response = await fetch(url, {
             method,
-            mode        : 'cors',
-            cache       : 'no-cache',
-            credentials : 'same-origin',
-            headers     : {
-                'Content-Type' : 'application/json'
+            headers : {
+                'Content-Type' : data.type ? data.type : 'application/json'
             },
-            redirect       : 'follow',
-            referrerPolicy : 'no-referrer',
-            body           : JSON.stringify(data)
+            body : data.type ? data : JSON.stringify(data)
         });
 
         const result = await response;
@@ -147,10 +142,18 @@ export default class App {
         }
     }
 
+    importFilms(file) {
+        try {
+            return this.fetcher('import', 'POST', file);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     eventBinder() {
         $(document).on('hidden.bs.modal', '#films-modal', (e) => {
             e.preventDefault();
-            $(this).find('form').trigger('reset');
+            $(e.target).find('form').trigger('reset');
         });
 
         $(document).on('click', 'button.btn-delete', (e) => {
@@ -176,6 +179,14 @@ export default class App {
         $('.btn-add').on('click', (e) => {
             e.preventDefault();
             $('#films-modal').modal('show');
+        });
+
+        $('#uploadDocument').on('change', e => {
+            e.preventDefault();
+            const file = document.getElementById('uploadDocument').files[0];
+
+            console.log(file);
+            this.importFilms(file);
         });
     }
 }
